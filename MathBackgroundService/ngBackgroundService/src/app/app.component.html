@@ -53,7 +53,7 @@
       </div>
       <br />
       <div>
-        Combien font: {{ currentQuestion.valueA }}
+        Combien font: {{ currentQuestion?.valueA }}
         @if (currentQuestion.operation == 0) {
         <span> + </span>
         } @if (currentQuestion.operation == 1) {
@@ -61,7 +61,7 @@
         } @if (currentQuestion.operation == 2) {
         <span> * </span>
         }
-        {{ currentQuestion.valueB }} ?
+        {{ currentQuestion?.valueB }} ?
       </div>
       <div style="margin-top: 15px">
         @for (answer of currentQuestion.answers; track answer; let i = $index) {
@@ -73,7 +73,7 @@
             color="primary"
             color="accent"
             style="margin: 10px"
-            matBadge="{{ currentQuestion.playerChoices[i] }}"
+            [matBadge]="currentQuestion?.playerChoices?.[i] ?? 0"
             (click)="selectChoice(i)"
           >
             {{ answer }}
