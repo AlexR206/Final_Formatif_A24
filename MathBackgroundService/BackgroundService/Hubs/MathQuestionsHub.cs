@@ -2,6 +2,7 @@
 using BackgroundServiceMath.DTOs;
 using BackgroundServiceMath.Models;
 using BackgroundServiceMath.Services;
+using BackgroundServiceVote.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
