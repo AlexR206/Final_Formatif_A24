@@ -1,15 +1,50 @@
+<!--
+  Final HTML used in the exam.
+  Comments explain what each binding/event does and when it runs.
+-->
+
 <div style="padding: 20px">
   <h1>Animation Angular</h1>
-  <button mat-raised-button color="accent">Animer une fois</button>
-  <button mat-raised-button color="accent">Animer en boucle</button>
-  <div class="square" style="background-color: red;"></div>
 
-  <div class="square" style="background-color: green;"></div>
+  <!--
+    When clicked, this calls the component method playNgAnimations(false).
+    Passing false => play the sequence one time (no looping).
+  -->
+  <button (click)="playNgAnimations(false)" mat-raised-button color="accent">Animer une fois</button>
 
-  <div class="square" style="background-color: blue;"></div>
+  <!--
+    When clicked, this calls playNgAnimations(true).
+    Passing true => the method will restart itself after the sequence finishes (loop).
+  -->
+  <button (click)="playNgAnimations(true)" mat-raised-button color="accent">Animer en boucle</button>
+
+  <!--
+    Each of these three divs is bound to an Angular animation trigger:
+      [@shake]="first"   -> listens to changes on `first` (number)
+      [@bounce]="second" -> listens to changes on `second` (number)
+      [@tada]="third"    -> listens to changes on `third` (number)
+
+    Important concept:
+      - These triggers are declared in the component `animations: [...]`.
+      - They are configured with transition(':increment', ...), so **incrementing** the number (first++, second++, third++)
+        will trigger the animation.
+      - Angular runs the animation when the bound expression value changes.
+  -->
+  <div [@shake]="first" class="square" style="background-color: red;"></div>
+
+  <div [@bounce]="second" class="square" style="background-color: green;"></div>
+
+  <div [@tada]="third" class="square" style="background-color: blue;"></div>
 </div>
+
 <div style="padding: 20px">
   <h1>Animation CSS</h1>
-  <button mat-raised-button color="accent">Faire tourner</button>
-  <div class="square" style="background-color:orange;"></div>
+
+  <!--
+    The rotate button toggles a boolean `rotate` through rotateCube().
+    The orange square uses [class.rotate-left]="rotate" to add/remove the CSS class.
+    Adding the class starts the CSS animation; removing it lets the animation be replayed later.
+  -->
+  <button (click)="rotateCube()" mat-raised-button color="accent">Faire tourner</button>
+  <div [class.rotate-left]="rotate" class="square" style="background-color:orange;"></div>
 </div>
